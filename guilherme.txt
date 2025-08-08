@@ -1,1 +1,5 @@
 Guilherme Pires
+
+git status
+
+git add * ou . ou <nomedo> 
