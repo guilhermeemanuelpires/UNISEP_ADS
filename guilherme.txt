@@ -1,5 +1,10 @@
-Guilherme Pires
-
 git status
 
 git add * ou . ou <nomedo> 
+
+git commit -m "[texto]"
+
+git push
+
+
+iniciando um serviço em NODE
