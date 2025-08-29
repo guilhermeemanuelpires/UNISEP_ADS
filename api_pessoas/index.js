@@ -24,7 +24,7 @@ app.post("/cadastro", (request, response) => {
     return response.send({ nome, telefone });
 });
 
-app.get("/listar:nome", (request, response) => {
+app.get("/listar", (request, response) => {
     const { nome } = request.params;
     return response.send({nome});
 })
