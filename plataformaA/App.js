@@ -7,8 +7,20 @@ import {
   TouchableOpacity
 } from 'react-native';
 import logo from "./assets/logo.png";
+import { useState } from 'react';
+
 
 export default function App() {
+
+  const [usuario, setUsuario] = useState();
+  const [errorMessage, setErrorMessage] = useState();
+
+  const validate = ()=>{
+    if(usuario.length < 11){
+      setErrorMessage('Usuário inválido!');
+    }
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.card}>
@@ -19,11 +31,15 @@ export default function App() {
 
         <Text style={styles.title}>Seja bem-vindo</Text>
 
+        { String(errorMessage).length > 0 ? <Text style={styles.error}>{errorMessage}</Text> : null}
+
         <TextInput
           placeholder='Usuário'
           keyboardType='numeric'
           placeholderTextColor="#9aa0a6"
           style={styles.input}
+          value={usuario}
+          onChangeText={setUsuario}
         />
 
         <TextInput
@@ -34,7 +50,9 @@ export default function App() {
         />
 
         <TouchableOpacity
-          style={styles.button}>
+          style={styles.button}
+          onPress={validate}
+          >
           <Text style={styles.buttonText}>Entrar</Text>
         </TouchableOpacity>
 
@@ -117,5 +135,10 @@ const styles = StyleSheet.create({
   dividerText:{
     marginHorizontal: 10,
     color: '#9aa0a6'
+  },
+  error:{
+    color: '#c8003c',
+    textAlign: 'center',  
+    marginBottom: 8
   }
 });
