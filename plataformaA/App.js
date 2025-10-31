@@ -16,15 +16,25 @@ export default function App() {
   const [password, setPassword] = useState();
   const [errorMessage, setErrorMessage] = useState();
 
-  const validate = ()=>{
+  const validate = () => {
 
-    if(String(user).length < 11){
+    if (String(user).length < 11) {
       setErrorMessage('Usuário inválido!');
-    }else if (String(password).length < 6){
+    } else if (String(password).length < 6) {
       setErrorMessage('Senha inválida!');
-    }else{
+    } else {
       Alert.alert('Login', 'Login realizado com sucesso! 👍');
     }
+  }
+
+  const handlerUser = (value) => {
+    setUser(value);
+    setErrorMessage('');
+  }
+
+  const handlerPassword = (value)=>{
+    setPassword(value);
+    setErrorMessage('');
   }
 
   return (
@@ -37,7 +47,7 @@ export default function App() {
 
         <Text style={styles.title}>Seja bem-vindo</Text>
 
-        { String(errorMessage).length > 0 ? <Text style={styles.error}>{errorMessage}</Text> : null}
+        {String(errorMessage).length > 0 ? <Text style={styles.error}>{errorMessage}</Text> : null}
 
         <TextInput
           placeholder='Usuário'
@@ -45,22 +55,20 @@ export default function App() {
           placeholderTextColor="#9aa0a6"
           style={styles.input}
           value={user}
-          onChangeText={setUser}
+          onChangeText={(value)=>{handlerUser(value)}}
         />
-
         <TextInput
           placeholder='Senha'
           secureTextEntry
           placeholderTextColor="#9aa0a6"
           style={styles.input}
           value={password}
-          onChangeText={setPassword}
+          onChangeText={(value)=>{handlerPassword(value)}}
         />
-
         <TouchableOpacity
           style={styles.button}
           onPress={validate}
-          >
+        >
           <Text style={styles.buttonText}>Entrar</Text>
         </TouchableOpacity>
 
@@ -136,17 +144,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: 25
   },
-  link:{
+  link: {
     color: '#c8003c',
     fontSize: 14
   },
-  dividerText:{
+  dividerText: {
     marginHorizontal: 10,
     color: '#9aa0a6'
   },
-  error:{
+  error: {
     color: '#c8003c',
-    textAlign: 'center',  
+    textAlign: 'center',
     marginBottom: 8
   }
 });
