@@ -4,20 +4,26 @@ import {
   Image,
   Text,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
+  Alert
 } from 'react-native';
 import logo from "./assets/logo.png";
 import { useState } from 'react';
 
-
 export default function App() {
 
-  const [usuario, setUsuario] = useState();
+  const [user, setUser] = useState();
+  const [password, setPassword] = useState();
   const [errorMessage, setErrorMessage] = useState();
 
   const validate = ()=>{
-    if(usuario.length < 11){
+
+    if(String(user).length < 11){
       setErrorMessage('Usuário inválido!');
+    }else if (String(password).length < 6){
+      setErrorMessage('Senha inválida!');
+    }else{
+      Alert.alert('Login', 'Login realizado com sucesso! 👍');
     }
   }
 
@@ -38,8 +44,8 @@ export default function App() {
           keyboardType='numeric'
           placeholderTextColor="#9aa0a6"
           style={styles.input}
-          value={usuario}
-          onChangeText={setUsuario}
+          value={user}
+          onChangeText={setUser}
         />
 
         <TextInput
@@ -47,6 +53,8 @@ export default function App() {
           secureTextEntry
           placeholderTextColor="#9aa0a6"
           style={styles.input}
+          value={password}
+          onChangeText={setPassword}
         />
 
         <TouchableOpacity
