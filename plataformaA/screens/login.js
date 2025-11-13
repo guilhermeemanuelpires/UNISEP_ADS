@@ -10,7 +10,7 @@ import {
 import logo from "../assets/logo.png";
 import { useState } from 'react';
 
-export default function Login() {
+export default function Login({navigator}) {
 
   const [user, setUser] = useState();
   const [password, setPassword] = useState();
