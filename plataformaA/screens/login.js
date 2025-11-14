@@ -10,7 +10,7 @@ import {
 import logo from "../assets/logo.png";
 import { useState } from 'react';
 
-export default function Login({navigator}) {
+export default function Login({ navigation }) {
 
   const [user, setUser] = useState();
   const [password, setPassword] = useState();
@@ -23,7 +23,8 @@ export default function Login({navigator}) {
     } else if (String(password).length < 6) {
       setErrorMessage('Senha inválida!');
     } else {
-      Alert.alert('Login', 'Login realizado com sucesso! 👍');
+      // Alert.alert('Login', 'Login realizado com sucesso! 👍');
+      navigation.navigate('perfil');
     }
   }
 
@@ -32,7 +33,7 @@ export default function Login({navigator}) {
     setErrorMessage('');
   }
 
-  const handlerPassword = (value)=>{
+  const handlerPassword = (value) => {
     setPassword(value);
     setErrorMessage('');
   }
@@ -55,7 +56,7 @@ export default function Login({navigator}) {
           placeholderTextColor="#9aa0a6"
           style={styles.input}
           value={user}
-          onChangeText={(value)=>{handlerUser(value)}}
+          onChangeText={(value) => { handlerUser(value) }}
         />
         <TextInput
           placeholder='Senha'
@@ -63,7 +64,7 @@ export default function Login({navigator}) {
           placeholderTextColor="#9aa0a6"
           style={styles.input}
           value={password}
-          onChangeText={(value)=>{handlerPassword(value)}}
+          onChangeText={(value) => { handlerPassword(value) }}
         />
         <TouchableOpacity
           style={styles.button}
